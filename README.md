@@ -1,0 +1,1 @@
+# AspNetMvc6ProtobufFormatters
