@@ -32,7 +32,6 @@ namespace AspNetMvc6Protobuf.Formatters
         {
             return true;
         }
- 
 
         public override async Task WriteResponseBodyAsync(OutputFormatterContext context)
         {
