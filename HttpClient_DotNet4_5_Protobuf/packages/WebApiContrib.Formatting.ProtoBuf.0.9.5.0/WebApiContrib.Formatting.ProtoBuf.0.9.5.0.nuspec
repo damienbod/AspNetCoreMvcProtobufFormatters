@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>WebApiContrib.Formatting.ProtoBuf</id>
+    <version>0.9.5.0</version>
+    <title>WebApiContrib.Formatting.ProtoBuf</title>
+    <authors>WebApiContrib Contributors</authors>
+    <owners>WebApiContrib Contributors</owners>
+    <licenseUrl>https://raw.github.com/WebApiContrib/WebApiContrib.Formatting.ProtoBuf/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/WebApiContrib/WebApiContrib.Formatting.ProtoBuf</projectUrl>
+    <iconUrl>https://2.gravatar.com/avatar/f1ad1241dfb26dcb97abfeb8375a5971?s=128</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Description</description>
+    <releaseNotes />
+    <copyright>Copyright © WebApiContrib 2012 - 2013</copyright>
+    <language />
+    <tags>webapi webapicontrib protobuf</tags>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.WebApi.Client" version="4.0.20710.0" />
+      <dependency id="protobuf-net" version="2.0.0.480" />
+    </dependencies>
+  </metadata>
+</package>
