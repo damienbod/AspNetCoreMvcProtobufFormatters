@@ -23,12 +23,9 @@ namespace AspNetMvc6Protobuf
         // Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-
-            services.ConfigureMvc(options =>
+            services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new ProtobufInputFormatter());
-
                 options.OutputFormatters.Add(new ProtobufOutputFormatter());
                 options.FormatterMappings.SetMediaTypeMappingForFormat("protobuf",  MediaTypeHeaderValue.Parse("application/x-protobuf"));
             });

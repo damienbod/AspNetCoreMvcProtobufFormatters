@@ -1,10 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Internal;
-using Microsoft.Framework.Internal;
 using Microsoft.Net.Http.Headers;
 using ProtoBuf.Meta;
 
@@ -35,7 +32,7 @@ namespace AspNetMvc6Protobuf.Formatters
 
         public override async Task WriteResponseBodyAsync(OutputFormatterContext context)
         {
-            var response = context.ActionContext.HttpContext.Response;
+            var response = context.HttpContext.Response;
             var selectedEncoding = context.SelectedEncoding;
 
             Model.Serialize(response.Body, context.Object);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspNetMvc6Protobuf.Model;
+﻿using AspNetMvc6Protobuf.Model;
 using Microsoft.AspNet.Mvc;
 
 namespace AspNetMvc6Protobuf.Controllers
