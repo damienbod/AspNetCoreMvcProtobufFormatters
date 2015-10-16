@@ -9,6 +9,7 @@ using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Routing;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Logging;
 using Microsoft.Net.Http.Headers;
 
 namespace AspNetMvc6Protobuf
@@ -30,17 +31,23 @@ namespace AspNetMvc6Protobuf
                 options.FormatterMappings.SetMediaTypeMappingForFormat("protobuf",  MediaTypeHeaderValue.Parse("application/x-protobuf"));
             });
         }
-
-        // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            // Configure the HTTP request pipeline.
-            app.UseStaticFiles();
+            loggerFactory.MinimumLevel = LogLevel.Information;
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
 
-            // Add MVC to the request pipeline.
-            app.UseMvc();        
-            // Add the following route for porting Web API 2 controllers.
-            // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
+            app.UseIISPlatformHandler();
+
+            app.UseExceptionHandler("/Home/Error");
+
+            app.UseStaticFiles();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

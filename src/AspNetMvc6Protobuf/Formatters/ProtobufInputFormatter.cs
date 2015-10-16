@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
 using ProtoBuf.Meta;
 
@@ -16,7 +17,7 @@ namespace AspNetMvc6Protobuf.Formatters
             get { return model.Value; }
         }
 
-        public override Task<object> ReadRequestBodyAsync(InputFormatterContext context)
+        public override Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
         {
             var type = context.ModelType;
             var request = context.HttpContext.Request;
@@ -25,8 +26,7 @@ namespace AspNetMvc6Protobuf.Formatters
 
 
             object result = Model.Deserialize(context.HttpContext.Request.Body, null, type);
-
-            return Task.FromResult(result);
+            return InputFormatterResult.SuccessAsync(result);
         }
 
         public override bool CanRead(InputFormatterContext context)
