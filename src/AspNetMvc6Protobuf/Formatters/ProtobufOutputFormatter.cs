@@ -26,22 +26,6 @@ namespace AspNetMvc6Protobuf.Formatters
             SupportedEncodings.Add(Encoding.GetEncoding("utf-8"));
         }
 
-        public override bool CanWriteResult(OutputFormatterContext context, MediaTypeHeaderValue contentType)
-        {
-            return true;
-        }
-
-        public override async Task WriteResponseBodyAsync(OutputFormatterContext context)
-        {
-            var response = context.HttpContext.Response;
-            var selectedEncoding = context.SelectedEncoding;
-
-            Model.Serialize(response.Body, context.Object);
-            return;
-
-            // await response.Body.WriteAsync(valueAsString, context.SelectedEncoding);
-        }
-
         private static RuntimeTypeModel CreateTypeModel()
         {
             var typeModel = TypeModel.Create();
@@ -49,5 +33,12 @@ namespace AspNetMvc6Protobuf.Formatters
             return typeModel;
         }
 
+        public override Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
+        {
+            var response = context.HttpContext.Response;
+    
+            Model.Serialize(response.Body, context.Object);
+            return Task.FromResult(response);
+        }
     }
 }

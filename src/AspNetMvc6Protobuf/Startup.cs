@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetMvc6Protobuf.Formatters;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+using AspNetMvc6Protobuf.Formatters;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Routing;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
 using Microsoft.Net.Http.Headers;
 
 namespace AspNetMvc6Protobuf
@@ -39,8 +41,6 @@ namespace AspNetMvc6Protobuf
 
             app.UseIISPlatformHandler();
 
-            app.UseExceptionHandler("/Home/Error");
-
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
@@ -49,5 +49,8 @@ namespace AspNetMvc6Protobuf
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
