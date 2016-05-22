@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
 using ProtoBuf.Meta;
 
@@ -23,7 +22,8 @@ namespace AspNetMvc6Protobuf.Formatters
         {
             ContentType = "application/x-protobuf";
             SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse("application/x-protobuf"));
-            SupportedEncodings.Add(Encoding.GetEncoding("utf-8"));
+
+            //SupportedEncodings.Add(Encoding.GetEncoding("utf-8"));
         }
 
         private static RuntimeTypeModel CreateTypeModel()

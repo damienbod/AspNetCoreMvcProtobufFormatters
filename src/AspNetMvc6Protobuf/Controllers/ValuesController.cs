@@ -1,5 +1,5 @@
 ﻿using AspNetMvc6Protobuf.Model;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetMvc6Protobuf.Controllers
 {
