@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtoBuf;
 
-namespace AspNetMvc6Protobuf.Model
+namespace AspNetCoreProtobuf.Model
 {
     [ProtoContract]
     public class ProtobufModelDto

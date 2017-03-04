@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-using AspNetMvc6Protobuf.Formatters;
+using AspNetCoreProtobuf.Formatters;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Net.Http.Headers;
 
-namespace AspNetMvc6Protobuf
+namespace AspNetCoreProtobuf
 {
     public class Startup
     {
