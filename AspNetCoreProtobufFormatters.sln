@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNetMvc6Protobuf", "src\AspNetMvc6Protobuf\AspNetMvc6Protobuf.xproj", "{884513EE-7015-47F0-AC3D-70052B70EB56}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNetCoreProtobuf", "src\AspNetCoreProtobuf\AspNetCoreProtobuf.xproj", "{884513EE-7015-47F0-AC3D-70052B70EB56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
