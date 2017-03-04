@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AA4E73C4-5653-46BF-BAA2-F9939C342A61}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C6899A1D-1A49-4657-8FD8-791292BF7F07}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNetCoreProtobuf", "src\AspNetCoreProtobuf\AspNetCoreProtobuf.xproj", "{884513EE-7015-47F0-AC3D-70052B70EB56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProtobuf", "src\AspNetCoreProtobuf\AspNetCoreProtobuf.csproj", "{884513EE-7015-47F0-AC3D-70052B70EB56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
