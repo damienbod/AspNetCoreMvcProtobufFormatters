@@ -1,6 +1,6 @@
 # ASP.NET Core Protobuf Formatters (InputFormatter and OutputFormatter)
 
-https://damienbod.wordpress.com/2015/06/03/asp-net-5-mvc-6-custom-protobuf-formatters/
+https://damienbod.com/2015/06/03/asp-net-5-mvc-6-custom-protobuf-formatters/
 
 ## History
 
