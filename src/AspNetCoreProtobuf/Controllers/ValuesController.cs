@@ -1,7 +1,7 @@
-﻿using AspNetMvc6Protobuf.Model;
+﻿using AspNetCoreProtobuf.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetMvc6Protobuf.Controllers
+namespace AspNetCoreProtobuf.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
