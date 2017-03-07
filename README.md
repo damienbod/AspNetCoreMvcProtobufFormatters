@@ -2,6 +2,13 @@
 
 https://damienbod.com/2015/06/03/asp-net-5-mvc-6-custom-protobuf-formatters/
 
+
+|                           | Build                                                                                                                                                             |       
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| .NET Core, angular        | [![Build status](https://ci.appveyor.com/api/projects/status/ihtrq4u81rtsty9k?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetmvc6protobufformatters)   |
+
+
+
 ## History
 
 <strong>2017.03.04</strong> Updated to csproj, VS2017, protobuf-net 2.1.0
