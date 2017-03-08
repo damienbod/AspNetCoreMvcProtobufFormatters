@@ -29,7 +29,7 @@ namespace AspNetCoreProtobuf.IntegrationTests
         }
 
         [Fact]
-        public async Task GetProtobufData()
+        public async Task GetProtobufDataAndCheckProtobufContentTypeMediaType()
         {
             // Act
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
@@ -42,6 +42,25 @@ namespace AspNetCoreProtobuf.IntegrationTests
 
             // Assert
             Assert.Equal("application/x-protobuf", response.Content.Headers.ContentType.MediaType );
+            Assert.Equal("\b\u0001\u0012\nHelloWorld\u001a\u001fMy first MVC 6 Protobuf service", responseString);
+        }
+
+        [Fact]
+        public void PostProtobufData()
+        {
+            // HTTP GET with Protobuf Response Body
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
+
+            HttpResponseMessage response = _client.GetAsync("api/Values/4").Result;
+
+            HttpContent data = new StringContent("\b\u0001\u0012\nHelloWorld\u001a\u001fMy first MVC 6 Protobuf service");
+
+            // HTTP POST with Protobuf Request Body
+            var responseForPost = _client.PostAsync("api/Values", data).Result;
+
+            Assert.True(responseForPost.IsSuccessStatusCode);
+           
+
         }
     }
 }
