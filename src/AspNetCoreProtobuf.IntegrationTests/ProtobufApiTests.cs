@@ -1,8 +1,6 @@
-﻿using AspNetCoreProtobuf;
-using AspNetCoreProtobuf.Model;
+﻿using AspNetCoreProtobuf.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -13,13 +11,13 @@ namespace AspNetCoreProtobuf.IntegrationTests
 {
     // This project can output the Class library as a NuGet Package.
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
-    public class WebApiTest
+    public class ProtobufApiTests
     {
 
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
-        public WebApiTest()
+        public ProtobufApiTests()
         {
             //Arrange
             _server = new TestServer(
