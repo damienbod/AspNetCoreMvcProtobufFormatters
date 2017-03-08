@@ -80,8 +80,6 @@ namespace AspNetCoreProtobuf.IntegrationTests
             var responseForPost = _client.PostAsync("api/Values", data).Result;
 
             Assert.True(responseForPost.IsSuccessStatusCode);
-           
-
         }
     }
 }
