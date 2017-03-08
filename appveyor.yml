@@ -11,4 +11,4 @@ before_build:
 - appveyor-retry dotnet restore -v Minimal
 test_script:
 - cd src/AspNetCoreProtobuf.IntegrationTests
-- dotnet test
+- dotnet vstest .\bin\debug\netcoreapp1.1\AspNetCoreProtobuf.IntegrationTests.dll
