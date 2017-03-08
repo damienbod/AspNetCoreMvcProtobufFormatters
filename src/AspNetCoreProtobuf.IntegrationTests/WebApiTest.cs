@@ -3,6 +3,7 @@ using AspNetCoreProtobuf.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace AspNetCoreProtobuf.IntegrationTests
         }
 
         [Fact]
-        public async Task GetProtobufDataAndCheckProtobufContentTypeMediaType()
+        public async Task GetProtobufDataAsString()
         {
             // Act
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
@@ -41,8 +42,24 @@ namespace AspNetCoreProtobuf.IntegrationTests
             );
 
             // Assert
-            Assert.Equal("application/x-protobuf", response.Content.Headers.ContentType.MediaType );
+            Assert.Equal("application/x-protobuf", response.Content.Headers.ContentType.MediaType);
             Assert.Equal("\b\u0001\u0012\nHelloWorld\u001a\u001fMy first MVC 6 Protobuf service", responseString);
+        }
+
+        [Fact]
+        public async Task GetProtobufDataAndCheckProtobufContentTypeMediaType()
+        {
+            // Act
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
+            var response = await _client.GetAsync("/api/values/1");
+            response.EnsureSuccessStatusCode();
+
+            var result = ProtoBuf.Serializer.Deserialize<ProtobufModelDto>(await response.Content.ReadAsStreamAsync());
+
+
+            // Assert
+            Assert.Equal("application/x-protobuf", response.Content.Headers.ContentType.MediaType );
+            Assert.Equal("My first MVC 6 Protobuf service", result.StringValue);
         }
 
         [Fact]
@@ -50,10 +67,17 @@ namespace AspNetCoreProtobuf.IntegrationTests
         {
             // HTTP GET with Protobuf Response Body
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
+            
+            MemoryStream stream = new MemoryStream();
+            ProtoBuf.Serializer.Serialize<ProtobufModelDto>(stream, new ProtobufModelDto
+            {
+                Id = 2,
+                Name= "lovely data",
+                StringValue = "amazing this ah"
+            
+            });
 
-            HttpResponseMessage response = _client.GetAsync("api/Values/4").Result;
-
-            HttpContent data = new StringContent("\b\u0001\u0012\nHelloWorld\u001a\u001fMy first MVC 6 Protobuf service");
+            HttpContent data = new StreamContent(stream);
 
             // HTTP POST with Protobuf Request Body
             var responseForPost = _client.PostAsync("api/Values", data).Result;
