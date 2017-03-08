@@ -54,7 +54,6 @@ namespace AspNetCoreProtobuf.IntegrationTests
 
             var result = ProtoBuf.Serializer.Deserialize<ProtobufModelDto>(await response.Content.ReadAsStreamAsync());
 
-
             // Assert
             Assert.Equal("application/x-protobuf", response.Content.Headers.ContentType.MediaType );
             Assert.Equal("My first MVC 6 Protobuf service", result.StringValue);
