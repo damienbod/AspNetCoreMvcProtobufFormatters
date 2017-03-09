@@ -1,6 +1,10 @@
 # ASP.NET Core Protobuf Formatters (InputFormatter and OutputFormatter)
 
-https://damienbod.com/2015/06/03/asp-net-5-mvc-6-custom-protobuf-formatters/
+Posts in this series:
+<ul>	
+        <li><a href="https://damienbod.com/2015/06/03/asp-net-5-mvc-6-custom-protobuf-formatters/">ASP.NET Core Using Protobuf Formatters </a></li>
+	<li>Testing ASP.NET Core MVC Protobuf API using HTTPClient and xUnit</li>
+</ul>
 
 
 |                           | Build                                                                                                                                                             |       
