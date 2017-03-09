@@ -15,10 +15,16 @@ namespace AspNetCoreProtobuf.Controllers
 
         [HttpPost]
         [Route("")]
-        public void Post([FromBody]ProtobufModelDto value)
+        public IActionResult Post([FromBody]ProtobufModelDto value)
         {
             // Yes the value can be sent as a protobuf item.
             var myValue = value;
+            if(value == null)
+            {
+                return BadRequest("no data");
+            }
+
+            return NoContent();
         }
 
     }
