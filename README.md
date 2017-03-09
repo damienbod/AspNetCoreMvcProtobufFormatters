@@ -3,7 +3,7 @@
 Posts in this series:
 <ul>	
         <li><a href="https://damienbod.com/2015/06/03/asp-net-5-mvc-6-custom-protobuf-formatters/">ASP.NET Core Using Protobuf Formatters </a></li>
-	<li>T<a href="https://damienbod.com/2017/03/09/testing-an-asp-net-core-mvc-protobuf-api-using-httpclient-and-xunit/">esting an ASP.NET Core MVC Protobuf API using HTTPClient and xUnit</a></li>
+	<li><a href="https://damienbod.com/2017/03/09/testing-an-asp-net-core-mvc-protobuf-api-using-httpclient-and-xunit/">Testing an ASP.NET Core MVC Protobuf API using HTTPClient and xUnit</a></li>
 </ul>
 
 
