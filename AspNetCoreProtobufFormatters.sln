@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AA4E73C4-5653-46BF-BAA2-F9939C342A61}"
 EndProject
@@ -52,12 +52,12 @@ Global
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.Debug|x64.Build.0 = Debug|Any CPU
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.Debug|x86.Build.0 = Debug|Any CPU
-		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|Any CPU.ActiveCfg = IntegrationTest|Any CPU
-		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|Any CPU.Build.0 = IntegrationTest|Any CPU
-		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|x64.ActiveCfg = IntegrationTest|Any CPU
-		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|x64.Build.0 = IntegrationTest|Any CPU
-		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|x86.ActiveCfg = IntegrationTest|Any CPU
-		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|x86.Build.0 = IntegrationTest|Any CPU
+		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|Any CPU.ActiveCfg = Release|Any CPU
+		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|Any CPU.Build.0 = Release|Any CPU
+		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|x64.ActiveCfg = Release|Any CPU
+		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|x64.Build.0 = Release|Any CPU
+		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|x86.ActiveCfg = Release|Any CPU
+		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.IntegrationTest|x86.Build.0 = Release|Any CPU
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.Release|x64.ActiveCfg = Release|Any CPU
@@ -71,5 +71,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{884513EE-7015-47F0-AC3D-70052B70EB56} = {AA4E73C4-5653-46BF-BAA2-F9939C342A61}
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF} = {AA4E73C4-5653-46BF-BAA2-F9939C342A61}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1245DFAC-12C0-484F-BA81-667CF6F7106D}
 	EndGlobalSection
 EndGlobal
