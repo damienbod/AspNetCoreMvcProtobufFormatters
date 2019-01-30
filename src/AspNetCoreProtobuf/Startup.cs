@@ -24,13 +24,10 @@ namespace AspNetCoreProtobuf
                 options.InputFormatters.Add(new ProtobufInputFormatter());
                 options.OutputFormatters.Add(new ProtobufOutputFormatter());
                 options.FormatterMappings.SetMediaTypeMappingForFormat("protobuf",  MediaTypeHeaderValue.Parse("application/x-protobuf"));
-            });
+            }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
-
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {

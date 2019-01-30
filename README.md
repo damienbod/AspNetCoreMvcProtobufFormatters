@@ -2,7 +2,7 @@
 
 Posts in this series:
 <ul>	
-        <li><a href="https://damienbod.com/2015/06/03/asp-net-5-mvc-6-custom-protobuf-formatters/">ASP.NET Core Using Protobuf Formatters </a></li>
+    <li><a href="https://damienbod.com/2015/06/03/asp-net-5-mvc-6-custom-protobuf-formatters/">ASP.NET Core Using Protobuf Formatters </a></li>
 	<li><a href="https://damienbod.com/2017/03/09/testing-an-asp-net-core-mvc-protobuf-api-using-httpclient-and-xunit/">Testing an ASP.NET Core MVC Protobuf API using HTTPClient and xUnit</a></li>
 </ul>
 
@@ -14,6 +14,8 @@ Posts in this series:
 
 
 ## History
+
+<strong>2019-01-30</strong> Updated to ASP.NET Core 2.2
 
 <strong>2017-08-17</strong> Updated to ASP.NET Core 2.0 
 
