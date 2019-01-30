@@ -6,11 +6,9 @@ Posts in this series:
 	<li><a href="https://damienbod.com/2017/03/09/testing-an-asp-net-core-mvc-protobuf-api-using-httpclient-and-xunit/">Testing an ASP.NET Core MVC Protobuf API using HTTPClient and xUnit</a></li>
 </ul>
 
-
 |                           | Build                                                                                                                                                             |       
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | .NET Core                 | [![Build status](https://ci.appveyor.com/api/projects/status/ihtrq4u81rtsty9k?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetmvc6protobufformatters)  |
-
 
 
 ## History
