@@ -23,23 +23,13 @@ namespace StsServerIdentity
         {
             return new List<ApiResource>
             {
-                // example code
-                //new ApiResource("dataEventRecords")
-                //{
-                //    ApiSecrets =
-                //    {
-                //        new Secret("dataEventRecordsSecret".Sha256())
-                //    },
-                //    Scopes =
-                //    {
-                //        new Scope
-                //        {
-                //            Name = "dataeventrecords",
-                //            DisplayName = "Scope for the dataEventRecords ApiResource"
-                //        }
-                //    },
-                //    UserClaims = { "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin", "dataEventRecords.user" }
-                //}
+                new ApiResource("apiproto")
+                {
+                    ApiSecrets =
+                    {
+                        new Secret("apiprotoSecret".Sha256())
+                    }
+                }
             };
         }
 
@@ -50,40 +40,14 @@ namespace StsServerIdentity
 
             return new List<Client>
             {
-                // example code
-                //new Client
-                //{
-                //    ClientName = "angularclient",
-                //    ClientId = "angularclient",
-                //    AccessTokenType = AccessTokenType.Reference,
-                //    AccessTokenLifetime = 330,// 330 seconds, default 60 minutes
-                //    IdentityTokenLifetime = 30,
-                //    AllowedGrantTypes = GrantTypes.Implicit,
-                //    AllowAccessTokensViaBrowser = true,
-                //    RedirectUris = new List<string>
-                //    {
-                //        "https://localhost:44311",
-                //        "https://localhost:44311/silent-renew.html"
-
-                //    },
-                //    PostLogoutRedirectUris = new List<string>
-                //    {
-                //        "https://localhost:44311/unauthorized",
-                //        "https://localhost:44311"
-                //    },
-                //    AllowedCorsOrigins = new List<string>
-                //    {
-                //        "https://localhost:44311",
-                //        "http://localhost:44311"
-                //    },
-                //    AllowedScopes = new List<string>
-                //    {
-                //        "openid",
-                //        "role",
-                //        "profile",
-                //        "email"
-                //    }
-                //}
+                new Client
+                {
+                    ClientId = "ClientProtectedApi",
+                    ClientName = "ClientProtectedApi",
+                    ClientSecrets = new List<Secret> { new Secret { Value = "protected_api_client_secret".Sha256() } },
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedScopes = new List<string> { "apiproto" }
+                },
             };
         }
     }
