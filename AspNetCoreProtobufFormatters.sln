@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AA4E73C4-5653-46BF-BAA2-F9939C342A61}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProtobuf", "src\AspNetCoreProtobuf\AspNetCoreProtobuf.csproj", "{884513EE-7015-47F0-AC3D-70052B70EB56}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProtobuf.IntegrationTests", "src\AspNetCoreProtobuf.IntegrationTests\AspNetCoreProtobuf.IntegrationTests.csproj", "{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StsServerIdentity", "src\SecureTokenServer\StsServerIdentity.csproj", "{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,24 @@ Global
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.Release|x64.Build.0 = Release|Any CPU
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF}.Release|x86.Build.0 = Release|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Debug|x64.Build.0 = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Debug|x86.Build.0 = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.IntegrationTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.IntegrationTest|Any CPU.Build.0 = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.IntegrationTest|x64.ActiveCfg = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.IntegrationTest|x64.Build.0 = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.IntegrationTest|x86.ActiveCfg = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.IntegrationTest|x86.Build.0 = Debug|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Release|x64.ActiveCfg = Release|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Release|x64.Build.0 = Release|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Release|x86.ActiveCfg = Release|Any CPU
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +91,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{884513EE-7015-47F0-AC3D-70052B70EB56} = {AA4E73C4-5653-46BF-BAA2-F9939C342A61}
 		{FA25BBF7-BC51-4912-8FAF-65F00A06E8CF} = {AA4E73C4-5653-46BF-BAA2-F9939C342A61}
+		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4} = {AA4E73C4-5653-46BF-BAA2-F9939C342A61}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1245DFAC-12C0-484F-BA81-667CF6F7106D}
