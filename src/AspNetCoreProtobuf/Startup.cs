@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+using IdentityServer4.AccessTokenValidation;
+
 using AspNetCoreProtobuf.Formatters;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Net.Http.Headers;
@@ -19,6 +21,14 @@ namespace AspNetCoreProtobuf
         // Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+              .AddIdentityServerAuthentication(options =>
+              {
+                  options.Authority = "https://localhost:44318/";
+                  options.ApiName = "apiproto";
+                  options.ApiSecret = "apiprotoSecret";
+              });
+
             services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new ProtobufInputFormatter());
