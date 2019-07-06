@@ -29,6 +29,13 @@ namespace AspNetCoreProtobuf
                   options.ApiSecret = "apiprotoSecret";
               });
 
+            services.AddAuthorization(options =>
+               options.AddPolicy("RequiredScope", policy =>
+               {
+                   policy.RequireClaim("scope", "apiproto");
+               })
+           );
+
             services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new ProtobufInputFormatter());

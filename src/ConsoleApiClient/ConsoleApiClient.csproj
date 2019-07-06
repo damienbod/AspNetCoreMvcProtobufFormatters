@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>ConsoleApiClient</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageId>ConsoleResourceOwnerFlowRefreshToken</PackageId>
+    <PackageId>ConsoleApiClient</PackageId>
     <StartupObject>ConsoleApiClient.Program</StartupObject>
   </PropertyGroup>
 

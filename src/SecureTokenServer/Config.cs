@@ -29,6 +29,13 @@ namespace StsServerIdentity
                     {
                         new Secret("apiprotoSecret".Sha256())
                     }
+                },
+                new ApiResource("dummy")
+                {
+                    ApiSecrets =
+                    {
+                        new Secret("apiprotoSecret".Sha256())
+                    }
                 }
             };
         }
@@ -46,7 +53,7 @@ namespace StsServerIdentity
                     ClientName = "ClientProtectedApi",
                     ClientSecrets = new List<Secret> { new Secret { Value = "apiprotoSecret".Sha256() } },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = new List<string> { "apiproto" }
+                    AllowedScopes = new List<string> { "apiproto", "dummy" }
                 },
             };
         }
