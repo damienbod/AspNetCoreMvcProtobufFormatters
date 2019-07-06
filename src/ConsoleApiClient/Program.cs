@@ -87,6 +87,5 @@ namespace ConsoleApiClient
                 return reader.ReadToEnd();
             }
         }
-
     }
 }

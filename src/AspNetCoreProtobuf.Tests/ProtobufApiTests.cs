@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.TestHost;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -78,22 +79,37 @@ namespace AspNetCoreProtobuf.IntegrationTests
 
             // HTTP GET with Protobuf Response Body
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
-            
+
             MemoryStream stream = new MemoryStream();
             ProtoBuf.Serializer.Serialize<ProtobufModelDto>(stream, new ProtobufModelDto
             {
                 Id = 2,
-                Name= "lovely data",
+                Name = "lovely data",
                 StringValue = "amazing this ah"
-            
+
             });
 
-            HttpContent data = new StreamContent(stream);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/Values")
+            {
+                Content = new StringContent(
+                    StreamToString(stream),
+                    Encoding.UTF8,
+                    "application/x-protobuf")//CONTENT-TYPE header
+            };
 
-            // HTTP POST with Protobuf Request Body
-            var responseForPost = await _client.PostAsync("api/Values", data);
+            var responseForPost = await _client.SendAsync(request);
+
 
             Assert.True(responseForPost.IsSuccessStatusCode);
+        }
+
+        private static string StreamToString(Stream stream)
+        {
+            stream.Position = 0;
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+            {
+                return reader.ReadToEnd();
+            }
         }
     }
 }
