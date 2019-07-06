@@ -16,7 +16,7 @@ namespace AspNetCoreProtobuf.IntegrationTests
 
         private readonly TestServer _server;
         private readonly HttpClient _client;
-
+        private readonly ApiTokenInMemoryClient  _tokenService;
         public ProtobufApiTests()
         {
             //Arrange
@@ -25,11 +25,25 @@ namespace AspNetCoreProtobuf.IntegrationTests
                 .UseKestrel()
                 .UseStartup<Startup>());
             _client = _server.CreateClient();
+
+            _tokenService = new ApiTokenInMemoryClient("https://localhost:443118", _server.CreateClient());
+        }
+
+        private async Task SetTokenAsync(HttpClient client)
+        {
+            var access_token = await _tokenService.GetApiToken(
+                    "ClientProtectedApi",
+                    "apiproto",
+                    "protected_api_client_secret"
+                );
+
+            client.SetBearerToken(access_token);
         }
 
         [Fact]
         public async Task GetProtobufDataAsString()
         {
+            await SetTokenAsync(_client);
             // Act
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
             var response = await _client.GetAsync("/api/values/1");
@@ -47,6 +61,7 @@ namespace AspNetCoreProtobuf.IntegrationTests
         [Fact]
         public async Task GetProtobufDataAndCheckProtobufContentTypeMediaType()
         {
+            await SetTokenAsync(_client);
             // Act
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
             var response = await _client.GetAsync("/api/values/1");
@@ -60,8 +75,10 @@ namespace AspNetCoreProtobuf.IntegrationTests
         }
 
         [Fact]
-        public void PostProtobufData()
+        public async Task PostProtobufDataAsync()
         {
+            await SetTokenAsync(_client);
+
             // HTTP GET with Protobuf Response Body
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
             
