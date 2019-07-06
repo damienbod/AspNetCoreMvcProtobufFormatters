@@ -1,6 +1,11 @@
-﻿using Serilog;
+﻿using AspNetCoreProtobuf.Model;
+using ProtoBuf.Meta;
+using Serilog;
+using System;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApiClient
@@ -49,6 +54,39 @@ namespace ConsoleApiClient
             );
 
             Log.Logger.Information("GOT DATA FROM THE RESOURCE SERVER");
+
+            // Write data to the server
+            
+            MemoryStream stream = new MemoryStream();
+            ProtoBuf.Serializer.Serialize<ProtobufModelDto>(stream, new ProtobufModelDto
+            {
+                Id = 2,
+                Name = "lovely data",
+                StringValue = "amazing this ah"
+
+            });
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/Values")
+            {
+                Content = new StringContent(
+                    StreamToString(stream),
+                    Encoding.UTF8,
+                    "application/x-protobuf")//CONTENT-TYPE header
+            };
+
+            var responseForPost = await client.SendAsync(request);
+          
+            Log.Logger.Information($"GOT DATA FROM THE RESOURCE SERVER code: {responseForPost.StatusCode}");
         }
+
+        private static string StreamToString(Stream stream)
+        {
+            stream.Position = 0;
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+
     }
 }
