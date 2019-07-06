@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StsServerIdentity", "src\Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiModel", "src\ApiModel\ApiModel.csproj", "{9E6EDAE9-1BDE-40DB-8AF3-1B6459FD5188}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApiClient", "src\ConsoleApiClient\ConsoleApiClient.csproj", "{788079B9-2DF9-44B3-A150-7131D569F39D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,24 @@ Global
 		{9E6EDAE9-1BDE-40DB-8AF3-1B6459FD5188}.Release|x64.Build.0 = Release|Any CPU
 		{9E6EDAE9-1BDE-40DB-8AF3-1B6459FD5188}.Release|x86.ActiveCfg = Release|Any CPU
 		{9E6EDAE9-1BDE-40DB-8AF3-1B6459FD5188}.Release|x86.Build.0 = Release|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Debug|x64.Build.0 = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Debug|x86.Build.0 = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.IntegrationTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.IntegrationTest|Any CPU.Build.0 = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.IntegrationTest|x64.ActiveCfg = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.IntegrationTest|x64.Build.0 = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.IntegrationTest|x86.ActiveCfg = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.IntegrationTest|x86.Build.0 = Debug|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Release|x64.ActiveCfg = Release|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Release|x64.Build.0 = Release|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Release|x86.ActiveCfg = Release|Any CPU
+		{788079B9-2DF9-44B3-A150-7131D569F39D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +112,7 @@ Global
 		{884513EE-7015-47F0-AC3D-70052B70EB56} = {AA4E73C4-5653-46BF-BAA2-F9939C342A61}
 		{53CC7BBB-EACC-4BB3-8B37-4C49ACE661B4} = {AA4E73C4-5653-46BF-BAA2-F9939C342A61}
 		{9E6EDAE9-1BDE-40DB-8AF3-1B6459FD5188} = {AA4E73C4-5653-46BF-BAA2-F9939C342A61}
+		{788079B9-2DF9-44B3-A150-7131D569F39D} = {AA4E73C4-5653-46BF-BAA2-F9939C342A61}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1245DFAC-12C0-484F-BA81-667CF6F7106D}

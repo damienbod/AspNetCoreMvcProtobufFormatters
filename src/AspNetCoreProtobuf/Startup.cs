@@ -24,7 +24,7 @@ namespace AspNetCoreProtobuf
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
               .AddIdentityServerAuthentication(options =>
               {
-                  options.Authority = "https://localhost:44318/";
+                  options.Authority = "https://localhost:44318";
                   options.ApiName = "apiproto";
                   options.ApiSecret = "apiprotoSecret";
               });
@@ -39,6 +39,7 @@ namespace AspNetCoreProtobuf
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

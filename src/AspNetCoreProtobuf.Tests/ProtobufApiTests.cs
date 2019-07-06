@@ -91,7 +91,7 @@ namespace AspNetCoreProtobuf.IntegrationTests
             HttpContent data = new StreamContent(stream);
 
             // HTTP POST with Protobuf Request Body
-            var responseForPost = _client.PostAsync("api/Values", data).Result;
+            var responseForPost = await _client.PostAsync("api/Values", data);
 
             Assert.True(responseForPost.IsSuccessStatusCode);
         }
