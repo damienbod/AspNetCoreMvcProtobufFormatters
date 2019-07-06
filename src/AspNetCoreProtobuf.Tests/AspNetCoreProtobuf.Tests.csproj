@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspNetCoreProtobuf\AspNetCoreProtobuf.csproj" />
+    <ProjectReference Include="..\ApiModel\ApiModel.csproj" />
   </ItemGroup>
 
   <ItemGroup>

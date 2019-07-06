@@ -13,20 +13,17 @@ namespace AspNetCoreProtobuf.IntegrationTests
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class ProtobufApiTests
     {
-
-        private readonly TestServer _server;
         private readonly HttpClient _client;
         private readonly ApiTokenInMemoryClient  _tokenService;
         public ProtobufApiTests()
         {
-            //Arrange
-            _server = new TestServer(
-                new WebHostBuilder()
-                .UseKestrel()
-                .UseStartup<Startup>());
-            _client = _server.CreateClient();
+            //Arrange;
+            _client = new HttpClient
+            {
+                BaseAddress = new System.Uri("https://localhost:44336")
+            };
 
-            _tokenService = new ApiTokenInMemoryClient("https://localhost:5001", _server.CreateClient());
+            _tokenService = new ApiTokenInMemoryClient("https://localhost:44318", new HttpClient());
         }
 
         private async Task SetTokenAsync(HttpClient client)
