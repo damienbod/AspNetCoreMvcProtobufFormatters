@@ -1,13 +1,11 @@
 ﻿using IdentityModel.Client;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace AspNetCoreProtobuf.IntegrationTests
+namespace AspNetCoreProtobuf.Tests
 {
     public class ApiTokenInMemoryClient
     {

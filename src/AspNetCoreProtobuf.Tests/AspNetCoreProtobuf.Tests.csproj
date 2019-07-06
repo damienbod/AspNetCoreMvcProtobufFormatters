@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AssemblyName>AspNetCoreProtobuf.IntegrationTests</AssemblyName>
+    <AssemblyName>AspNetCoreProtobuf.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
