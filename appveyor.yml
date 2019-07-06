@@ -4,8 +4,10 @@ init:
 install:
   - ECHO %APPVEYOR_BUILD_WORKER_IMAGE%
   - dotnet --version
-  - dotnet restore
+  - dotnet restore AspNetCoreProtobufFormatters.sln
+  - dotnet restore SystemTests.sln
 build_script:
-- dotnet build
+- dotnet build AspNetCoreProtobufFormatters.sln
+- dotnet build SystemTests.sln
 before_build:
 - appveyor-retry dotnet restore -v Minimal
