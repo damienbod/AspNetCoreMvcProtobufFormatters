@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <UserSecretsId>aspnet-WebApp_Auth-96d521e3-30ac-4a8f-967f-abc243174dce</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App"  />
-    <PackageReference Include="protobuf-net" Version="2.3.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="protobuf-net" Version="2.4.0" />
   </ItemGroup>
 </Project>
