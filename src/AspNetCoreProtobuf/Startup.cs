@@ -22,27 +22,28 @@ namespace AspNetCoreProtobuf
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-              .AddIdentityServerAuthentication(options =>
-              {
-                  options.Authority = "https://localhost:44318";
-                  options.ApiName = "apiproto";
-                  options.ApiSecret = "apiprotoSecret";
-              });
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "https://localhost:44318";
+                    options.ApiName = "apiproto";
+                    options.ApiSecret = "apiprotoSecret";
+                });
 
             services.AddAuthorization(options =>
-               options.AddPolicy("RequiredScope", policy =>
-               {
-                   policy.RequireClaim("scope", "apiproto");
-               })
-           );
+                options.AddPolicy("RequiredScope", policy =>
+                {
+                    policy.RequireClaim("scope", "apiproto");
+                })
+            );
 
             services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new ProtobufInputFormatter());
                 options.OutputFormatters.Add(new ProtobufOutputFormatter());
-                options.FormatterMappings.SetMediaTypeMappingForFormat("protobuf",  MediaTypeHeaderValue.Parse("application/x-protobuf"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("protobuf", MediaTypeHeaderValue.Parse("application/x-protobuf"));
             }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
         }
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseStaticFiles();
