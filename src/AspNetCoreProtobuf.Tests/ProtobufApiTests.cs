@@ -103,6 +103,36 @@ namespace AspNetCoreProtobuf.IntegrationTests
             Assert.True(responseForPost.IsSuccessStatusCode);
         }
 
+        [Fact]
+        public async Task Get401ForNoToken()
+        {
+            // Act
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
+            var response = await _client.GetAsync("/api/values/1");
+
+            // Assert
+            Assert.Equal("Unauthorized", response.StatusCode.ToString());
+        }
+
+        [Fact]
+        public async Task Get401ForIncorrectToken()
+        {
+            var access_token = await _tokenService.GetApiToken(
+                    "ClientProtectedApi",
+                    "dummy",
+                    "apiprotoSecret"
+                );
+
+            _client.SetBearerToken(access_token);
+
+            // Act
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
+            var response = await _client.GetAsync("/api/values/1");
+
+            // Assert
+            Assert.Equal("Unauthorized", response.StatusCode.ToString());
+        }
+
         private static string StreamToString(Stream stream)
         {
             stream.Position = 0;
