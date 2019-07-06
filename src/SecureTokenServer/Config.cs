@@ -44,7 +44,7 @@ namespace StsServerIdentity
                 {
                     ClientId = "ClientProtectedApi",
                     ClientName = "ClientProtectedApi",
-                    ClientSecrets = new List<Secret> { new Secret { Value = "protected_api_client_secret".Sha256() } },
+                    ClientSecrets = new List<Secret> { new Secret { Value = "apiprotoSecret".Sha256() } },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowedScopes = new List<string> { "apiproto" }
                 },

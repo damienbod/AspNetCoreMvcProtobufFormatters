@@ -31,7 +31,7 @@ namespace AspNetCoreProtobuf.IntegrationTests
             var access_token = await _tokenService.GetApiToken(
                     "ClientProtectedApi",
                     "apiproto",
-                    "protected_api_client_secret"
+                    "apiprotoSecret"
                 );
 
             client.SetBearerToken(access_token);
