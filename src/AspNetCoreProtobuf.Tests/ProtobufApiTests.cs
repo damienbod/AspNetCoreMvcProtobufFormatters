@@ -1,6 +1,4 @@
 ﻿using AspNetCoreProtobuf.Model;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using System.Net.Http;
@@ -21,7 +19,6 @@ namespace AspNetCoreProtobuf.Tests
         public ProtobufApiTests()
         {
             _configurationRoot = GetIConfigurationRoot();
-            //Arrange;
             _client = new HttpClient
             {
                 BaseAddress = new System.Uri(_configurationRoot["ApiUrl"])
@@ -45,7 +42,6 @@ namespace AspNetCoreProtobuf.Tests
         public async Task GetProtobufDataAsString()
         {
             await SetTokenAsync(_client);
-            // Act
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
             var response = await _client.GetAsync("/api/values/1");
             response.EnsureSuccessStatusCode();
@@ -63,7 +59,6 @@ namespace AspNetCoreProtobuf.Tests
         public async Task GetProtobufDataAndCheckProtobufContentTypeMediaType()
         {
             await SetTokenAsync(_client);
-            // Act
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
             var response = await _client.GetAsync("/api/values/1");
             response.EnsureSuccessStatusCode();
@@ -79,8 +74,6 @@ namespace AspNetCoreProtobuf.Tests
         public async Task PostProtobufDataAsync()
         {
             await SetTokenAsync(_client);
-
-            // HTTP GET with Protobuf Response Body
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
 
             MemoryStream stream = new MemoryStream();
@@ -102,14 +95,12 @@ namespace AspNetCoreProtobuf.Tests
 
             var responseForPost = await _client.SendAsync(request);
 
-
             Assert.True(responseForPost.IsSuccessStatusCode);
         }
 
         [Fact]
         public async Task Get401ForNoToken()
         {
-            // Act
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
             var response = await _client.GetAsync("/api/values/1");
 
