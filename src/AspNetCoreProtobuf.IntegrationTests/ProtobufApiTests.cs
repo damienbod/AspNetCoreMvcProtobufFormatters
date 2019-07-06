@@ -26,7 +26,7 @@ namespace AspNetCoreProtobuf.IntegrationTests
                 .UseStartup<Startup>());
             _client = _server.CreateClient();
 
-            _tokenService = new ApiTokenInMemoryClient("https://localhost:443118", _server.CreateClient());
+            _tokenService = new ApiTokenInMemoryClient("https://localhost:5001", _server.CreateClient());
         }
 
         private async Task SetTokenAsync(HttpClient client)
