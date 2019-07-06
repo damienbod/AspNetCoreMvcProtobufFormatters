@@ -1,6 +1,7 @@
 ﻿using AspNetCoreProtobuf.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -16,15 +17,17 @@ namespace AspNetCoreProtobuf.IntegrationTests
     {
         private readonly HttpClient _client;
         private readonly ApiTokenInMemoryClient  _tokenService;
+        private readonly IConfigurationRoot _configurationRoot;
         public ProtobufApiTests()
         {
+            _configurationRoot = GetIConfigurationRoot();
             //Arrange;
             _client = new HttpClient
             {
-                BaseAddress = new System.Uri("https://localhost:44336")
+                BaseAddress = new System.Uri(_configurationRoot["ApiUrl"])
             };
 
-            _tokenService = new ApiTokenInMemoryClient("https://localhost:44318", new HttpClient());
+            _tokenService = new ApiTokenInMemoryClient(_configurationRoot["StsUrl"], new HttpClient());
         }
 
         private async Task SetTokenAsync(HttpClient client)
@@ -32,7 +35,7 @@ namespace AspNetCoreProtobuf.IntegrationTests
             var access_token = await _tokenService.GetApiToken(
                     "ClientProtectedApi",
                     "apiproto",
-                    "apiprotoSecret"
+                    _configurationRoot["ApiSecret"]
                 );
 
             client.SetBearerToken(access_token);
@@ -140,6 +143,14 @@ namespace AspNetCoreProtobuf.IntegrationTests
             {
                 return reader.ReadToEnd();
             }
+        }
+
+        public static IConfigurationRoot GetIConfigurationRoot()
+        {
+            return new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: true)
+                .AddEnvironmentVariables()
+                .Build();
         }
     }
 }
