@@ -13,6 +13,8 @@ Posts in this series:
 
 ## History
 
+<strong>2019-07-06</strong> Updating packages
+
 <strong>2019-01-30</strong> Updated to ASP.NET Core 2.2
 
 <strong>2017-08-17</strong> Updated to ASP.NET Core 2.0 
