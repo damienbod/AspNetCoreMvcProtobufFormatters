@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -16,16 +17,19 @@ namespace AspNetCoreProtobuf.Formatters
             get { return model.Value; }
         }
 
-        public override Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
+        public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
         {
             var type = context.ModelType;
             var request = context.HttpContext.Request;
             MediaTypeHeaderValue requestContentType = null;
             MediaTypeHeaderValue.TryParse(request.ContentType, out requestContentType);
 
+            MemoryStream stream = new MemoryStream();
+            await request.Body.CopyToAsync(stream);
 
-            object result = Model.Deserialize(context.HttpContext.Request.Body, null, type);
-            return InputFormatterResult.SuccessAsync(result);
+            stream.Position = 0;
+            object result = Model.Deserialize(stream, null, type);
+            return await InputFormatterResult.SuccessAsync(result);
         }
 
         public override bool CanRead(InputFormatterContext context)

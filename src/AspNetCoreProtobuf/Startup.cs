@@ -36,10 +36,10 @@ namespace AspNetCoreProtobuf
                 })
             );
 
-            services.Configure<IISServerOptions>(options =>
-            {
-                options.AllowSynchronousIO = true;
-            });
+            //services.Configure<IISServerOptions>(options =>
+            //{
+            //    options.AllowSynchronousIO = true;
+            //});
 
             services.AddControllers(options =>
             {
