@@ -1,7 +1,6 @@
 ﻿using AspNetCoreProtobuf.Model;
-using ProtoBuf.Meta;
+using IdentityModel.Client;
 using Serilog;
-using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -20,11 +19,10 @@ namespace ConsoleApiClient
         {
             Log.Logger = new LoggerConfiguration()
               .MinimumLevel.Verbose()
-              .Enrich.WithProperty("App", "ConsoleResourceOwnerFlowRefreshToken")
+              .Enrich.WithProperty("App", "ApiProtoClient")
               .Enrich.FromLogContext()
-              .WriteTo.Seq("http://localhost:5341")
+              //.WriteTo.Seq("http://localhost:5341")
               .WriteTo.ColoredConsole()
-              //.WriteTo.RollingFile("../Log/ConsoleResourceOwnerFlowRefreshToken")
               .CreateLogger();
 
             
