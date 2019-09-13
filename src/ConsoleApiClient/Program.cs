@@ -12,7 +12,6 @@ namespace ConsoleApiClient
 {
     public class Program
     {
-        private readonly HttpClient _client;
         private static ApiTokenInMemoryClient _tokenService;
 
         public static void Main(string[] args) => MainAsync().GetAwaiter().GetResult();
