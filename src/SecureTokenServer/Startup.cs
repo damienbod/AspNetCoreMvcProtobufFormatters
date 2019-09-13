@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using IdentityServer4.Services;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
@@ -22,20 +21,23 @@ using StsServerIdentity.Resources;
 using StsServerIdentity.Services;
 using Microsoft.IdentityModel.Tokens;
 using StsServerIdentity.Filters;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Hosting;
 
 namespace StsServerIdentity
 {
     public class Startup
     {
-        private readonly IHostingEnvironment _environment;
-
-        public IConfiguration Configuration { get; }
-
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        private string _clientId = "xxxxxx";
+        private string _clientSecret = "xxxxx";
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
             _environment = env;
         }
+
+        public IConfiguration Configuration { get; }
+        public IWebHostEnvironment _environment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -70,6 +72,20 @@ namespace StsServerIdentity
                 cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
             }
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder
+                            .AllowCredentials()
+                            .WithOrigins("https://localhost:44311", "https://localhost:44390", "https://localhost:44395", "https://localhost:44318")
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -78,6 +94,14 @@ namespace StsServerIdentity
 
             services.AddSingleton<LocService>();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddErrorDescriber<StsIdentityErrorDescriber>()
+               .AddDefaultTokenProviders();
+
+            services.AddTransient<IProfileService, IdentityWithAdditionalClaimsProfileService>();
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddAuthentication()
                  .AddOpenIdConnect("aad", "Login with Azure AD", options =>
@@ -88,26 +112,18 @@ namespace StsServerIdentity
                      options.CallbackPath = "/signin-oidc";
                  });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddErrorDescriber<StsIdentityErrorDescriber>()
-                .AddDefaultTokenProviders();
-
             services.Configure<RequestLocalizationOptions>(
                 options =>
                 {
                     var supportedCultures = new List<CultureInfo>
                         {
                             new CultureInfo("en-US"),
-                            new CultureInfo("de-DE"),
                             new CultureInfo("de-CH"),
-                            new CultureInfo("it-IT"),
-                            new CultureInfo("gsw-CH"),
-                            new CultureInfo("fr-FR"),
-                            new CultureInfo("zh-Hans")
+							new CultureInfo("fr-CH"),
+							new CultureInfo("it-CH")
                         };
 
-                    options.DefaultRequestCulture = new RequestCulture(culture: "de-DE", uiCulture: "de-DE");
+                    options.DefaultRequestCulture = new RequestCulture(culture: "de-CH", uiCulture: "de-CH");
                     options.SupportedCultures = supportedCultures;
                     options.SupportedUICultures = supportedCultures;
 
@@ -119,10 +135,11 @@ namespace StsServerIdentity
                     options.RequestCultureProviders.Insert(0, providerQuery);
                 });
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(new SecurityHeadersAttribute());
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            services.AddControllersWithViews(options =>
+                {
+                    options.Filters.Add(new SecurityHeadersAttribute());
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddViewLocalization()
                 .AddDataAnnotationsLocalization(options =>
                 {
@@ -133,9 +150,7 @@ namespace StsServerIdentity
                     };
                 });
 
-            services.AddTransient<IProfileService, IdentityWithAdditionalClaimsProfileService>();
-
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddRazorPages();
 
             services.AddIdentityServer()
                 .AddSigningCredential(cert)
@@ -146,7 +161,7 @@ namespace StsServerIdentity
                 .AddProfileService<IdentityWithAdditionalClaimsProfileService>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -155,8 +170,11 @@ namespace StsServerIdentity
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
+                app.UseHsts(hsts => hsts.MaxAge(365).IncludeSubdomains());
             }
+
+            app.UseCors("AllowAllOrigins");
 
             app.UseHsts(hsts => hsts.MaxAge(365).IncludeSubdomains());
             app.UseXContentTypeOptions();
@@ -197,13 +215,20 @@ namespace StsServerIdentity
                     }
                 }
             });
+
             app.UseIdentityServer();
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

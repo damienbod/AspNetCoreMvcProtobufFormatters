@@ -15,6 +15,8 @@ Posts in this series:
 
 ## History
 
+<strong>2019-09-13</strong> Updated to .NET Core 3.0
+
 <strong>2019-07-06</strong> Adding security and switching to system tests
 
 <strong>2019-07-06</strong> Updating packages
