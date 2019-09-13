@@ -27,10 +27,7 @@ using Microsoft.Extensions.Hosting;
 namespace StsServerIdentity
 {
     public class Startup
-    {
-        private string _clientId = "xxxxxx";
-        private string _clientSecret = "xxxxx";
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+    {        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
             _environment = env;
