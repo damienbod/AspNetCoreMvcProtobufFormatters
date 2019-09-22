@@ -12,7 +12,12 @@ namespace AspNetCoreProtobuf.Controllers
         [HttpGet("{id}")]
         public ProtobufModelDto Get(int id)
         {
-            return new ProtobufModelDto() { Id = 1, Name = "HelloWorld", StringValue = "My first MVC 6 Protobuf service" };
+            return new ProtobufModelDto() { 
+                Id = 1, 
+                Name = "HelloWorld", 
+                StringValue = "My first MVC 6 Protobuf service",
+                IntValue = int.MaxValue
+            };
         }
 
         [HttpPost]

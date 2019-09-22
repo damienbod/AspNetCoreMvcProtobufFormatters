@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
+using ProtoBuf;
 using ProtoBuf.Meta;
 
 namespace AspNetCoreProtobuf.Formatters
@@ -26,9 +27,8 @@ namespace AspNetCoreProtobuf.Formatters
 
             MemoryStream stream = new MemoryStream();
             await request.Body.CopyToAsync(stream);
-
             stream.Position = 0;
-            object result = Model.Deserialize(stream, null, type);
+            object result = Model.Deserialize(stream, null, type, stream.Length);
             return await InputFormatterResult.SuccessAsync(result);
         }
 

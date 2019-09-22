@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
 using ProtoBuf.Meta;
@@ -37,13 +36,10 @@ namespace AspNetCoreProtobuf.Formatters
         public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
         {
             var response = context.HttpContext.Response;
-
             MemoryStream stream = new MemoryStream();
             Model.Serialize(stream, context.Object);
-
-            stream.Position = 0;
-            var sr = new StreamReader(stream);
-            await response.WriteAsync(sr.ReadToEnd());
+            var data = stream.ToArray();
+            await response.Body.WriteAsync(data, 0, data.Length);
         }
     }
 }
