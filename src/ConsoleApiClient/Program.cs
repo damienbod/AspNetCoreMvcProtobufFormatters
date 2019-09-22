@@ -56,15 +56,15 @@ namespace ConsoleApiClient
                 Id = 2,
                 Name = "lovely data",
                 StringValue = "amazing this ah",
-                IntValue = 123
+                IntValue = int.MaxValue
             });
-            await stream.FlushAsync();
+            var data = stream.ToArray();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/Values")
             {
-                Content = new StringContent(
-                    StreamToString(stream),
-                    Encoding.UTF8,
-                    "application/x-protobuf")//CONTENT-TYPE header
+                Content = new ByteArrayContent(
+                    data, 0, data.Length)
+                    //Encoding.UTF8,
+                    //"application/x-protobuf")//CONTENT-TYPE header
             };
 
             var responseForPost = await client.SendAsync(request);
@@ -86,18 +86,18 @@ namespace ConsoleApiClient
             await response.Content.CopyToAsync(stream);
             stream.Position = 0;
             var result = ProtoBuf.Serializer.Deserialize<ProtobufModelDto>(stream);
-            await stream.FlushAsync();
+
 
             Log.Logger.Information("GOT DATA FROM THE RESOURCE SERVER");
         }
 
-        private static string StreamToString(Stream stream)
-        {
-            stream.Position = 0;
-            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
-            {
-                return reader.ReadToEnd();
-            }
-        }
+        //private static string StreamToString(Stream stream)
+        //{
+        //    stream.Position = 0;
+        //    using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+        //    {
+        //        return reader.ReadToEnd();
+        //    }
+        //}
     }
 }

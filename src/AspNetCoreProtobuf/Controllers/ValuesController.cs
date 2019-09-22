@@ -16,7 +16,7 @@ namespace AspNetCoreProtobuf.Controllers
                 Id = 1, 
                 Name = "HelloWorld", 
                 StringValue = "My first MVC 6 Protobuf service",
-                IntValue = 123
+                IntValue = int.MaxValue
             };
         }
 
