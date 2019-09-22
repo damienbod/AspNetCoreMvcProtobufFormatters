@@ -26,9 +26,9 @@ namespace AspNetCoreProtobuf.Formatters
 
             MemoryStream stream = new MemoryStream();
             await request.Body.CopyToAsync(stream);
-
             stream.Position = 0;
             object result = Model.Deserialize(stream, null, type);
+            await stream.FlushAsync();
             return await InputFormatterResult.SuccessAsync(result);
         }
 

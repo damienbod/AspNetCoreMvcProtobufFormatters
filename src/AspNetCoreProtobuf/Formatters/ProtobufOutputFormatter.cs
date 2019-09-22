@@ -40,7 +40,7 @@ namespace AspNetCoreProtobuf.Formatters
 
             MemoryStream stream = new MemoryStream();
             Model.Serialize(stream, context.Object);
-
+            await stream.FlushAsync();
             stream.Position = 0;
             var sr = new StreamReader(stream);
             await response.WriteAsync(sr.ReadToEnd());

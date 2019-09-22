@@ -11,6 +11,8 @@ namespace AspNetCoreProtobuf.Model
         public string Name { get; set; }
         [ProtoMember(3)]
         public string StringValue { get; set; }
+        [ProtoMember(4)]
+        public int IntValue { get; set; }
 
     }
 }
