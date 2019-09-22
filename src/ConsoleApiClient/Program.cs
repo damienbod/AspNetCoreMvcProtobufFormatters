@@ -58,13 +58,21 @@ namespace ConsoleApiClient
                 StringValue = "amazing this ah",
                 IntValue = int.MaxValue
             });
+            //var data = stream.ToArray();
+            //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/Values")
+            //{
+            //    Content = new ByteArrayContent(
+            //        data, 0, data.Length)
+            //        //Encoding.UTF8,
+            //        //"application/x-protobuf")//CONTENT-TYPE header
+            //};
+
             var data = stream.ToArray();
+            var content = new ByteArrayContent(data, 0, data.Length);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/x-protobuf");
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/Values")
             {
-                Content = new ByteArrayContent(
-                    data, 0, data.Length)
-                    //Encoding.UTF8,
-                    //"application/x-protobuf")//CONTENT-TYPE header
+                Content = content
             };
 
             var responseForPost = await client.SendAsync(request);
@@ -90,14 +98,5 @@ namespace ConsoleApiClient
 
             Log.Logger.Information("GOT DATA FROM THE RESOURCE SERVER");
         }
-
-        //private static string StreamToString(Stream stream)
-        //{
-        //    stream.Position = 0;
-        //    using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
-        //    {
-        //        return reader.ReadToEnd();
-        //    }
-        //}
     }
 }
