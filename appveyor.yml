@@ -6,7 +6,8 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - cmd: choco install dotnetcore-sdk --pre
   - dotnet --version
-  - dotnet restore
+  - dotnet restore AspNetCoreProtobufFormatters.sln
+  - dotnet restore SystemTests.sln
   - choco install googlechrome
 build_script:
 - dotnet build AspNetCoreProtobufFormatters.sln
