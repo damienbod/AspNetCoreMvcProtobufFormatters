@@ -43,10 +43,8 @@ namespace AspNetCoreProtobuf
 
             services.AddControllers(options =>
             {
-                options.InputFormatters.Add(new ProtobufInputFormatter());
-                options.OutputFormatters.Add(new ProtobufOutputFormatter());
                 options.FormatterMappings.SetMediaTypeMappingForFormat("protobuf", MediaTypeHeaderValue.Parse("application/x-protobuf"));
-            }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+            }).AddProtobufFormatters();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
