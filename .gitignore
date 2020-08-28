@@ -191,3 +191,5 @@ ModelManifest.xml
 .vs
 src/AspNetMvc6Protobuf/project.lock.json
 src/AspNetMvc6Protobuf/project.lock.json
+/src/_log_api.txt
+/src/StsLogs.txt

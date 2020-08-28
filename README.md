@@ -15,6 +15,9 @@ Posts in this series:
 
 ## History
 
+
+<strong>2020-08-28</strong> Updated to .NET Core 3.1, Updated Protobuf
+
 <strong>2019-09-13</strong> Updated to .NET Core 3.0
 
 <strong>2019-07-06</strong> Adding security and switching to system tests
