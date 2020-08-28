@@ -25,7 +25,7 @@ namespace AspNetCoreProtobuf
                 .AddIdentityServerAuthentication(options =>
                 {
                     options.Authority = "https://localhost:44318";
-                    options.ApiName = "apiproto";
+                    options.ApiName = "ProtoApiClient";
                     options.ApiSecret = "apiprotoSecret";
                 });
 
