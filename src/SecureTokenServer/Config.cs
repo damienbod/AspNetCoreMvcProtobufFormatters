@@ -19,23 +19,25 @@ namespace StsServerIdentity
             };
         }
 
+        public static IEnumerable<ApiScope> GetApiScopes()
+        {
+            return new List<ApiScope>
+            {
+                new ApiScope("apiproto", "Scope for apiproto")
+            };
+        }
+
         public static IEnumerable<ApiResource> GetApiResources()
         {
             return new List<ApiResource>
             {
-                new ApiResource("apiproto")
+                new ApiResource("ProtoApiClient")
                 {
                     ApiSecrets =
                     {
                         new Secret("apiprotoSecret".Sha256())
-                    }
-                },
-                new ApiResource("dummy")
-                {
-                    ApiSecrets =
-                    {
-                        new Secret("apiprotoSecret".Sha256())
-                    }
+                    },
+                    Scopes = { "apiproto" },
                 }
             };
         }
@@ -53,7 +55,7 @@ namespace StsServerIdentity
                     ClientName = "ClientProtectedApi",
                     ClientSecrets = new List<Secret> { new Secret { Value = "apiprotoSecret".Sha256() } },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = new List<string> { "apiproto", "dummy" }
+                    AllowedScopes = new List<string> { "apiproto" }
                 },
             };
         }
